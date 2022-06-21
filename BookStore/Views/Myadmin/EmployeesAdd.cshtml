@@ -1,0 +1,518 @@
+﻿
+@{
+    ViewBag.Title = "员工信息添加";
+    Layout = "~/Views/Shared/_main.cshtml";
+}
+@if (ViewBag.txet == "添加成功！")
+{
+    <script>
+        $(document).ready(function () {
+            alert("@ViewBag.txet");
+        })
+    </script>
+}
+else if (ViewBag.txet == "添加失败！")
+{
+    <script>
+        $(document).ready(function () {
+            alert("@ViewBag.txet");
+        })
+    </script>
+}
+else if (ViewBag.txet == "程序报错，添加失败！")
+{
+    <script>
+        $(document).ready(function () {
+            alert("@ViewBag.txet");
+        })
+    </script>
+}
+else
+{
+    @ViewBag.txet
+}
+
+<div class="container-xl">
+    <div class="page-header d-print-none">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    员工信息添加
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+            <div class="col-12">
+                <form class="card" method="post" id="CardPost">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            员工信息管理
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="card-stamp card-stamp-lg">
+                                <div class="card-stamp-icon bg-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                         stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M5 11a7 7 0 0 1 14 0v7a1.78 1.78 0 0 1 -3.1 1.4a1.65 1.65 0 0 0 -2.6 0a1.65 1.65 0 0 1 -2.6 0a1.65 1.65 0 0 0 -2.6 0a1.78 1.78 0 0 1 -3.1 -1.4v-7"></path>
+                                        <line x1="10" y1="10" x2="10.01" y2="10"></line>
+                                        <line x1="14" y1="10" x2="14.01" y2="10"></line>
+                                        <path d="M10 14a3.5 3.5 0 0 0 4 0"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <h1 class="h1 text-center">
+                                            乐居
+                                        </h1>
+                                        <div class="markdown text-muted text-center">
+                                            《送董元达》——谢逸 （宋）
+                                            <br />
+                                            读书不作儒生酸，跃马西入金城关。
+                                            <br />
+                                            塞垣苦寒风气恶，归来面皱须眉斑。
+                                            <br />
+                                            先皇召见延和殿，议论慷慨天开颜。
+                                            <br />
+                                            谤书盈箧不复辩，脱身来看江南山。
+                                            <br />
+                                            长江滚滚蛟龙怒，扁舟此去何当还？
+                                            <br />
+                                            大梁城里定相见，玉川破屋应数间。
+                                            <br />
+                                            <br />
+                                        </div>
+                                        <h1 class="h1 text-center">《送董元达》译文及注释</h1>
+                                        <div class="markdown text-muted">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;读尽了书，你毫无腐儒的酸气；
+                                            投笔从戎，跃马在西北边关。边塞的气候恶劣，寒风凛冽，
+                                            你回来时，满面皱纹，须眉已斑。先皇帝在延和殿召见，
+                                            你慷慨激昂，纵横议论，得到了皇上的激赏。可惜诽谤你的人太多，
+                                            难以置辩，有功难封，你流落到江南，来赏玩这里的青山。
+                                            长江滚滚东去，下有蛟龙发怒，掀起波浪；你这次乘着扁舟离去，
+                                            何时才能回还？日后我们在大梁城中定能再见，
+                                            那时你必然还是牢守节操，家中只有破屋数间。
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        @* 用户名 *@
+                                        <div class="input-icon mb-3">
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <span class="input-icon-addon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                             stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <circle cx="12" cy="7" r="4"></circle>
+                                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                                        </svg>
+                                                    </span>
+                                                    <input value="" type="text" class="form-control" name="LoginId" placeholder="用户名" />
+                                                </div>
+                                                <div class="col-lg-4 text-red">
+                                                    <span id="TextLoginId">*必填</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @* 名称 *@
+                                        <div class="input-icon mb-3">
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <span class="input-icon-addon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mood-boy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <path d="M17 4.5a9 9 0 0 1 3.864 5.89a2.5 2.5 0 0 1 -.29 4.36a9 9 0 0 1 -17.137 0a2.5 2.5 0 0 1 -.29 -4.36a9 9 0 0 1 3.746 -5.81"></path>
+                                                            <path d="M9.5 16a3.5 3.5 0 0 0 5 0"></path>
+                                                            <path d="M8.5 2c1.5 1 2.5 3.5 2.5 5"></path>
+                                                            <path d="M12.5 2c1.5 2 2 3.5 2 5"></path>
+                                                            <line x1="9" y1="12" x2="9.01" y2="12"></line>
+                                                            <line x1="15" y1="12" x2="15.01" y2="12"></line>
+                                                        </svg>
+                                                    </span>
+                                                    <input value="" type="text" class="form-control" name="Name" placeholder="名称" />
+                                                </div>
+                                                <div class="col-lg-4 text-red">
+                                                    <span id="TextName">*必填</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @* 地址 *@
+                                        <div class="input-icon mb-3">
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <span class="input-icon-addon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-building-skyscraper" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <line x1="3" y1="21" x2="21" y2="21"></line>
+                                                            <path d="M5 21v-14l8 -4v18"></path>
+                                                            <path d="M19 21v-10l-6 -4"></path>
+                                                            <line x1="9" y1="9" x2="9" y2="9.01"></line>
+                                                            <line x1="9" y1="12" x2="9" y2="12.01"></line>
+                                                            <line x1="9" y1="15" x2="9" y2="15.01"></line>
+                                                            <line x1="9" y1="18" x2="9" y2="18.01"></line>
+                                                        </svg>
+                                                    </span>
+                                                    <input type="text" value="" class="form-control" name="Address" placeholder="地址" />
+                                                </div>
+                                                <div class="col-lg-4 text-red">
+                                                    <span id="TextAddress">*必填</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*邮箱*@
+                                        <div class="input-icon mb-3">
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <span class="input-icon-addon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail-forward" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <path d="M12 18h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v7.5"></path>
+                                                            <path d="M3 6l9 6l9 -6"></path>
+                                                            <path d="M15 18h6"></path>
+                                                            <path d="M18 15l3 3l-3 3"></path>
+                                                        </svg>
+                                                    </span>
+                                                    <input value="" type="email" class="form-control" name="Mail" placeholder="邮箱" />
+                                                </div>
+                                                <div class="col-lg-4 text-red">
+                                                    <span id="TextMail">*必填</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*手机号码*@
+                                        <div class="input-icon mb-3">
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <span class="input-icon-addon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cash-banknote" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <circle cx="12" cy="12" r="3"></circle>
+                                                            <rect x="3" y="6" width="18" height="12" rx="2"></rect>
+                                                            <line x1="18" y1="12" x2="18.01" y2="12"></line>
+                                                            <line x1="6" y1="12" x2="6.01" y2="12"></line>
+                                                        </svg>
+                                                    </span>
+                                                    <input value="" type="text" class="form-control" name="Phone" placeholder="手机号码" />
+                                                </div>
+                                                <div class="col-lg-4 text-red">
+                                                    <span id="TextPhone">*必填</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*密码*@
+                                        <div class="input-icon mb-3">
+                                            <div class="input-icon mb-3">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <span class="input-icon-addon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                <rect x="5" y="11" width="14" height="10" rx="2"></rect>
+                                                                <circle cx="12" cy="16" r="1"></circle>
+                                                                <path d="M8 11v-4a4 4 0 0 1 8 0v4"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <input value="" type="password" class="form-control" name="LoginPwd" placeholder="密码" />
+                                                    </div>
+                                                    <div class="col-lg-3 text-red">
+                                                        <span id="TextLoginPwd">*必填</span>
+                                                    </div>
+                                                    <div class="col-lg-1 text-red">
+                                                        <span id="TextLoginPwds"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*确认密码*@
+                                        <div class="input-icon mb-3">
+                                            <div class="input-icon mb-3">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <span class="input-icon-addon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                <rect x="5" y="11" width="14" height="10" rx="2"></rect>
+                                                                <circle cx="12" cy="16" r="1"></circle>
+                                                                <path d="M8 11v-4a4 4 0 0 1 8 0v4"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <input value="" type="password" class="form-control" name="OrLoginPwd" placeholder="重复密码" />
+                                                    </div>
+                                                    <div class="col-lg-4 text-red">
+                                                        <span id="TextOrLoginPwd">*必填</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*提交 与 重置*@
+                                        <div class="mt-3 text-center">
+                                            <input type="submit" id="Update" class="btn btn-primary text-center" value="添加" />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <input type="reset" value="重置" class="btn btn-danger text-center" />
+                                        </div>
+                                        <br />
+                                        <div class="mt-3 text-center">
+                                            <span class="text-center text-center text-red" id="MsgNoms">
+                                                <a href="/Myadmin/Employees">返回员工信息</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        // 重复密码
+        $("input[name=OrLoginPwd]").keyup(function () {
+            OrLoginPwdData();
+            Onchars();
+        })
+        // 密码强度
+        $("input[name=LoginPwd]").keyup(function () {
+            var lvl = 0;
+            var txt = $("input[name=LoginPwd]").val();
+            var reg = /^.{6,18}$/
+            // 判断数字
+            if (/[0-9]/.test(txt)) {
+                lvl++;
+            }
+            // 判断有没有字母
+            if (/[a-zA-Z]/.test(txt)) {
+                lvl++;
+            }
+            // 判断有没有特殊符号
+            if (/[^0-9a-zA-A_]/.test(txt)) {
+                lvl++;
+            }
+            if (reg.test(txt)) {
+                $("#TextLoginPwd").text("");
+                var svn = "<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-user-check' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke = 'none' d = 'M0 0h24v24H0z' fill = 'none'></path><circle cx='9' cy='7' r='4'></circle><path d='M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2'></path><path d='M16 11l2 2l4 -4'></path></svg >";
+                $("#TextLoginPwd").append(svn);
+                if (lvl == 1) {
+                    var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-battery-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><path d="M6 7h11a2 2 0 0 1 2 2v.5a0.5 .5 0 0 0 .5 .5a0.5 .5 0 0 1 .5 .5v3a0.5 .5 0 0 1 -.5 .5a0.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2"></path><line x1="7" y1="10" x2="7" y2="14"></line></svg >';
+                    $("#TextLoginPwds").text("");
+                    $("#TextLoginPwds").text("弱");
+                    $("#TextLoginPwds").append(svn);
+                } else if (lvl == 2) {
+                    var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-battery-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><path d="M6 7h11a2 2 0 0 1 2 2v.5a0.5 .5 0 0 0 .5 .5a0.5 .5 0 0 1 .5 .5v3a0.5 .5 0 0 1 -.5 .5a0.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2"></path><line x1="7" y1="10" x2="7" y2="14"></line><line x1="10" y1="10" x2="10" y2="14"></line></svg >';
+                    $("#TextLoginPwds").text("");
+                    $("#TextLoginPwds").text("一般");
+                    $("#TextLoginPwds").append(svn);
+                } else {
+                    var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-battery-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><path d="M6 7h11a2 2 0 0 1 2 2v.5a0.5 .5 0 0 0 .5 .5a0.5 .5 0 0 1 .5 .5v3a0.5 .5 0 0 1 -.5 .5a0.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2"></path><line x1="7" y1="10" x2="7" y2="14"></line><line x1="10" y1="10" x2="10" y2="14"></line><line x1="13" y1="10" x2="13" y2="14"></line><line x1="16" y1="10" x2="16" y2="14"></line></svg >';
+                    $("#TextLoginPwds").text("");
+                    $("#TextLoginPwds").text("强");
+                    $("#TextLoginPwds").append(svn);
+                }
+            }
+        });
+        // 名称
+        $("input[name=Name]").blur(function () {
+            NameData();
+            Onchars();
+        });
+        //用户名
+        $("input[name=LoginId]").blur(function () {
+            LoginID();
+            Onchars();
+        });
+        // 地址
+        $("input[name=Address]").blur(function () {
+            AddressData();
+            Onchars();
+        });
+        // 邮箱
+        $("input[name=Mail]").blur(function () {
+            MailData();
+            Onchars();
+        });
+        // 手机号码
+        $("input[name=Phone]").blur(function () {
+            PhoneData();
+            Onchars();
+        });
+        // 密码
+        $("input[name=LoginPwd]").blur(function () {
+            LoginPwdData();
+            Onchars();
+        })
+    });
+    // 格式正确可以提交
+    function Onchars() {
+        console.log(1);
+        if (LoginID() && NameData() && AddressData() && MailData() && PhoneData() && LoginPwdData() && OrLoginPwdData()) {
+            console.log("2");
+            $("#Update").attr("disabled", false);
+        }
+    }
+    // 重复密码
+    function OrLoginPwdData() {
+        if (LoginPwdData()) {
+            if ($("input[name=LoginPwd]").val() == $("input[name=OrLoginPwd]").val()) {
+                $("#TextOrLoginPwd").text("");
+                var svn = "<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-user-check' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke = 'none' d = 'M0 0h24v24H0z' fill = 'none'></path><circle cx='9' cy='7' r='4'></circle><path d='M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2'></path><path d='M16 11l2 2l4 -4'></path></svg >";
+                $("#TextOrLoginPwd").append(svn);
+                return true;
+            } else {
+                $("#TextOrLoginPwd").text("两次密码不一致，请重新输入");
+                var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><circle cx="9" cy="7" r="4"></circle><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path><path d="M17 9l4 4m0 -4l-4 4"></path></svg >'
+                $("#TextOrLoginPwd").append(svn);
+                return false;
+            }
+        }
+    }
+    // 验证密码格式
+    function LoginPwdData() {
+        var txt = $("input[name=LoginPwd]").val();
+        var reg = /^.{6,18}$/
+        if (txt == "") {
+            $("#TextLoginPwd").text("请填写密码");
+            var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><circle cx="9" cy="7" r="4"></circle><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path><path d="M17 9l4 4m0 -4l-4 4"></path></svg >'
+            $("#TextLoginPwd").append(svn);
+            return false;
+        } else if (!reg.test(txt)) {
+            $("#TextLoginPwd").text("密码必须在6~18位之间");
+            var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><circle cx="9" cy="7" r="4"></circle><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path><path d="M17 9l4 4m0 -4l-4 4"></path></svg >'
+            $("#TextLoginPwd").append(svn);
+            return false;
+        } else {
+            $("#TextLoginPwd").text("");
+            var svn = "<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-user-check' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke = 'none' d = 'M0 0h24v24H0z' fill = 'none'></path><circle cx='9' cy='7' r='4'></circle><path d='M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2'></path><path d='M16 11l2 2l4 -4'></path></svg >";
+            $("#TextLoginPwd").append(svn);
+            return true;
+        }
+    }
+    //手机号码格式
+    function PhoneData() {
+        var reg = /^1(3[0-9]|4[01456879]|5[0-35-9]|6[2567]|7[0-8]|8[0-9]|9[0-35-9])\d{8}$/
+        var txt = $("input[name=Phone]").val();
+        if (txt == "") {
+            $("#TextPhone").text("请填写手机号码");
+            var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><circle cx="9" cy="7" r="4"></circle><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path><path d="M17 9l4 4m0 -4l-4 4"></path></svg >'
+            $("#TextPhone").append(svn);
+            return false;
+        } else if (reg.test(txt)) {
+            $("#TextPhone").text("");
+            var svn = "<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-user-check' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke = 'none' d = 'M0 0h24v24H0z' fill = 'none'></path><circle cx='9' cy='7' r='4'></circle><path d='M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2'></path><path d='M16 11l2 2l4 -4'></path></svg >";
+            $("#TextPhone").append(svn);
+            return true;
+        } else {
+            $("#TextPhone").text("请填写正确的手机号码");
+            var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><circle cx="9" cy="7" r="4"></circle><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path><path d="M17 9l4 4m0 -4l-4 4"></path></svg >'
+            $("#TextPhone").append(svn);
+            return false;
+        }
+    }
+    // 判断邮箱格式
+    function MailData() {
+        var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+        var txt = $("input[name = Mail]").val();
+        if (txt == "") {
+            $("#TextMail").text("请填写邮箱");
+            var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><circle cx="9" cy="7" r="4"></circle><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path><path d="M17 9l4 4m0 -4l-4 4"></path></svg >'
+            $("#TextMail").append(svn);
+            return false;
+        } else if (reg.test(txt)) {
+            $.ajax({
+                url: "/Myadmin/EmployeesAdd",
+                type: "get",
+                data: { "id": "Mail", "LoginId": txt },
+                success: function (msg) {
+                    if (msg > 0) {
+                        $("#TextMail").text("邮箱已注册，请更换邮箱");
+                        var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><circle cx="9" cy="7" r="4"></circle><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path><path d="M17 9l4 4m0 -4l-4 4"></path></svg >'
+                        $("#TextMail").append(svn);
+                        return false;
+                    } else {
+                        $("#TextMail").text("");
+                        var svn = "<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-user-check' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke = 'none' d = 'M0 0h24v24H0z' fill = 'none'></path><circle cx='9' cy='7' r='4'></circle><path d='M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2'></path><path d='M16 11l2 2l4 -4'></path></svg >";
+                        $("#TextMail").append(svn);
+                        return true;
+                    }
+                }
+            })
+        } else {
+            $("#TextMail").text("邮箱格式错误请重新填写");
+            var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><circle cx="9" cy="7" r="4"></circle><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path><path d="M17 9l4 4m0 -4l-4 4"></path></svg >'
+            $("#TextMail").append(svn);
+            return false;
+        }
+
+    }
+    // 是否填写地址
+    function AddressData() {
+        var txt = $("input[name=Address]").val();
+        if (txt != "") {
+            $("#TextAddress").text("");
+            var svn = "<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-user-check' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke = 'none' d = 'M0 0h24v24H0z' fill = 'none'></path><circle cx='9' cy='7' r='4'></circle><path d='M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2'></path><path d='M16 11l2 2l4 -4'></path></svg >";
+            $("#TextAddress").append(svn);
+            return true;
+        } else {
+            $("#TextAddress").text("请填写地址");
+            var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><circle cx="9" cy="7" r="4"></circle><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path><path d="M17 9l4 4m0 -4l-4 4"></path></svg >'
+            $("#TextAddress").append(svn);
+            return false;
+        }
+    }
+    // 用户名是否重复
+    function LoginID() {
+        var txt = $("input[name=LoginId]").val();
+        if (txt == "") {
+            $("#TextLoginId").text("请填写用户名");
+            var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><circle cx="9" cy="7" r="4"></circle><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path><path d="M17 9l4 4m0 -4l-4 4"></path></svg >'
+            $("#TextLoginId").append(svn);
+            return false;
+        } else {
+            $.ajax({
+                url: "/Myadmin/EmployeesAdd",
+                type: "get",
+                data: { "id": "LoginId", "LoginId": txt },
+                success: function (data) {
+                    if (data > 0) {
+                        $("#TextLoginId").text("用户名已注册，请更换用户");
+                        var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><circle cx="9" cy="7" r="4"></circle><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path><path d="M17 9l4 4m0 -4l-4 4"></path></svg >'
+                        $("#TextLoginId").append(svn);
+                        return false;
+                    } else {
+                        $("#TextLoginId").text("");
+                        var svn = "<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-user-check' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke = 'none' d = 'M0 0h24v24H0z' fill = 'none'></path><circle cx='9' cy='7' r='4'></circle><path d='M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2'></path><path d='M16 11l2 2l4 -4'></path></svg >";
+                        $("#TextLoginId").append(svn);
+                        return true;
+                    }
+                }
+            })
+        }
+    }
+    // 是否填写名称
+    function NameData() {
+        var txt = $("input[name=Name]").val();
+        if (txt != "") {
+            $("#TextName").text("");
+            var svn = "<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-user-check' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke = 'none' d = 'M0 0h24v24H0z' fill = 'none'></path><circle cx='9' cy='7' r='4'></circle><path d='M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2'></path><path d='M16 11l2 2l4 -4'></path></svg >";
+            $("#TextName").append(svn);
+            return true;
+        } else {
+            $("#TextName").text("请填写名称");
+            var svn = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">< path stroke = "none" d = "M0 0h24v24H0z" fill = "none" ></path><circle cx="9" cy="7" r="4"></circle><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path><path d="M17 9l4 4m0 -4l-4 4"></path></svg >'
+            $("#TextName").append(svn);
+            return false;
+        }
+    }
+</script>

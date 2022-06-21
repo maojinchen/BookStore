@@ -1,0 +1,255 @@
+﻿
+@{
+    ViewBag.Title = "用户信息修改";
+    Layout = "~/Views/Shared/_main.cshtml";
+}
+@model BookStore.Models.Users
+<div class="container-xl">
+    <div class="page-header d-print-none">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    用户信息修改
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+            <div class="col-12">
+                <form class="card" method="post">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            用户信息管理
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="card-stamp card-stamp-lg">
+                                <div class="card-stamp-icon bg-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                         stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M5 11a7 7 0 0 1 14 0v7a1.78 1.78 0 0 1 -3.1 1.4a1.65 1.65 0 0 0 -2.6 0a1.65 1.65 0 0 1 -2.6 0a1.65 1.65 0 0 0 -2.6 0a1.78 1.78 0 0 1 -3.1 -1.4v-7"></path>
+                                        <line x1="10" y1="10" x2="10.01" y2="10"></line>
+                                        <line x1="14" y1="10" x2="14.01" y2="10"></line>
+                                        <path d="M10 14a3.5 3.5 0 0 0 4 0"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <h1 class="h1 text-center">
+                                            乐居
+                                        </h1>
+                                        <div class="markdown text-muted text-center">
+                                            《劝学》——颜真卿（唐）
+                                            <br />
+                                            三更灯火五更鸡，
+                                            <br />
+                                            正是男儿读书时。
+                                            <br />
+                                            黑发不知勤学早，
+                                            <br />
+                                            白首方悔读书迟。
+                                            <br /><br /><br />
+                                        </div>
+                                        <h1 class="h1 text-center">《劝学》译文及注释</h1>
+                                        <div class="markdown text-muted">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;晚上在灯火下学到三更,五更鸡叫又早起学习，
+                                            这一早一晚正是男儿读书的好时候。
+                                            少年不知道早起勤奋学习，到老了后悔读书少就太迟了。
+                                        </div>
+                                    </div>
+
+                                    <div class="col-7">
+                                        <div class="input-icon mb-3">
+                                            <span class="input-icon-addon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                     stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                                </svg>
+                                            </span>
+                                            <input value="@Model.LoginId" type="text" class="form-control" name="LoginId" placeholder="用户名" disabled="disabled"  />
+                                        </div>
+                                        <div class="input-icon mb-3">
+                                            <span class="input-icon-addon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mood-boy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M17 4.5a9 9 0 0 1 3.864 5.89a2.5 2.5 0 0 1 -.29 4.36a9 9 0 0 1 -17.137 0a2.5 2.5 0 0 1 -.29 -4.36a9 9 0 0 1 3.746 -5.81"></path>
+                                                    <path d="M9.5 16a3.5 3.5 0 0 0 5 0"></path>
+                                                    <path d="M8.5 2c1.5 1 2.5 3.5 2.5 5"></path>
+                                                    <path d="M12.5 2c1.5 2 2 3.5 2 5"></path>
+                                                    <line x1="9" y1="12" x2="9.01" y2="12"></line>
+                                                    <line x1="15" y1="12" x2="15.01" y2="12"></line>
+                                                </svg>
+                                            </span>
+                                            <input value="@Model.Name" type="text" class="form-control" name="Name" placeholder="名称" />
+                                        </div>
+                                        <div class="input-icon mb-3">
+                                            <span class="input-icon-addon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-building-skyscraper" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <line x1="3" y1="21" x2="21" y2="21"></line>
+                                                    <path d="M5 21v-14l8 -4v18"></path>
+                                                    <path d="M19 21v-10l-6 -4"></path>
+                                                    <line x1="9" y1="9" x2="9" y2="9.01"></line>
+                                                    <line x1="9" y1="12" x2="9" y2="12.01"></line>
+                                                    <line x1="9" y1="15" x2="9" y2="15.01"></line>
+                                                    <line x1="9" y1="18" x2="9" y2="18.01"></line>
+                                                </svg>
+                                            </span>
+                                            <input type="text" value="@Model.Address" class="form-control" name="Address" placeholder="地址" />
+                                        </div>
+                                        <div class="input-icon mb-3">
+                                            <span class="input-icon-addon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail-forward" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M12 18h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v7.5"></path>
+                                                    <path d="M3 6l9 6l9 -6"></path>
+                                                    <path d="M15 18h6"></path>
+                                                    <path d="M18 15l3 3l-3 3"></path>
+                                                </svg>
+                                            </span>
+                                            <input value="@Model.Mail" type="email" class="form-control" name="Mail" placeholder="邮箱" />
+                                        </div>
+                                        <div class="input-icon mb-3">
+                                            <span class="input-icon-addon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cash-banknote" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                    <rect x="3" y="6" width="18" height="12" rx="2"></rect>
+                                                    <line x1="18" y1="12" x2="18.01" y2="12"></line>
+                                                    <line x1="6" y1="12" x2="6.01" y2="12"></line>
+                                                </svg>
+                                            </span>
+                                            <input value="@Model.Phone" type="text" class="form-control" name="Phone" placeholder="手机号码" />
+                                        </div>
+                                        <div class="input-icon mb-3">
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-stats" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4"></path>
+                                                    <path d="M18 14v4h4"></path>
+                                                    <circle cx="18" cy="18" r="4"></circle>
+                                                    <path d="M15 3v4"></path>
+                                                    <path d="M7 3v4"></path>
+                                                    <path d="M3 11h16"></path>
+                                                </svg>
+                                                创建时间：@Model.RegisterTime.ToString("yyyy年MM月dd日HH:mm")
+                                            </span>
+                                        </div>
+                                        <div class="input-icon mb-3">
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4"></path>
+                                                    <circle cx="18" cy="18" r="4"></circle>
+                                                    <path d="M15 3v4"></path>
+                                                    <path d="M7 3v4"></path>
+                                                    <path d="M3 11h16"></path>
+                                                    <path d="M18 16.496v1.504l1 1"></path>
+                                                </svg>
+                                                修改时间：@Model.Uptime.ToString("yyyy年MM月dd日HH:mm")
+                                            </span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div>
+                                                用户状态：
+                                                @if (Model.UserRoleId == 4)
+                                                {
+                                                    <label class="form-check form-check-inline">
+                                                        <input type="radio" name="UserRoleId" class="form-check-input" value="1" />
+                                                        <span class="form-check-label">普通用户</span>
+                                                    </label>
+                                                    <label class="form-check form-check-inline">
+                                                        <input type="radio" name="UserRoleId" class="form-check-input" value="2" />
+                                                        <span class="form-check-label">会员</span>
+                                                    </label>
+                                                    <label class="form-check form-check-inline">
+                                                        <input type="radio" name="UserRoleId" class="form-check-input" checked value="4" />
+                                                        <span class="form-check-label">禁用</span>
+                                                    </label>
+                                                }
+                                                else if (Model.UserRoleId == 2)
+                                                {
+                                                    <label class="form-check form-check-inline">
+                                                        <input type="radio" name="UserRoleId" class="form-check-input" value="1" />
+                                                        <span class="form-check-label">普通用户</span>
+                                                    </label>
+                                                    <label class="form-check form-check-inline">
+                                                        <input type="radio" name="UserRoleId" class="form-check-input" checked value="2" />
+                                                        <span class="form-check-label">会员</span>
+                                                    </label>
+                                                    <label class="form-check form-check-inline">
+                                                        <input type="radio" name="UserRoleId" class="form-check-input" value="4" />
+                                                        <span class="form-check-label">禁用</span>
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    <label class="form-check form-check-inline">
+                                                        <input type="radio" name="UserRoleId" class="form-check-input" value="1" checked />
+                                                        <span class="form-check-label">普通用户</span>
+                                                    </label>
+                                                    <label class="form-check form-check-inline">
+                                                        <input type="radio" name="UserRoleId" class="form-check-input" value="2" />
+                                                        <span class="form-check-label">会员</span>
+                                                    </label>
+                                                    <label class="form-check form-check-inline">
+                                                        <input type="radio" name="UserRoleId" class="form-check-input" value="4" />
+                                                        <span class="form-check-label">禁用</span>
+                                                    </label>
+                                                }
+                                                @{
+                                                    string Id = Model.UserRoleId.ToString();
+                                                    string hs_pwd = Model.hs_pwd.ToString();
+                                                    string LoginPwd = Model.LoginPwd.ToString();
+                                                    string RegisterTime = Model.RegisterTime.ToString();
+                                                    string UserStateId = Model.UserStateId.ToString();
+                                                }
+                                                @Html.Hidden("Id", Id)
+                                                @Html.Hidden("LoginPwd", LoginPwd)
+                                                @Html.Hidden("hs_pwd", hs_pwd)
+                                                @Html.Hidden("RegisterTime", RegisterTime)
+                                                @Html.Hidden("UserStateId", UserStateId)
+                                            </div>
+                                        </div>
+                                        <div class="mt-3 text-center">
+                                            <input type="submit" value="修改" id="Update" class="btn btn-primary text-center" />
+                                            <input type="reset" value="重置" class="btn btn-danger text-center" />
+                                        </div>
+                                        <div class="mt-3 text-center">
+                                            @if (ViewBag.Msgs == "修改成功")
+                                            {
+                                                <span class="text-pink text-center">
+                                                    @ViewBag.Msgs
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-red text-center">
+                                                    @ViewBag.Msgs
+                                                </span>
+                                            }
+                                        </div>
+                                        <div class="mt-3 text-center">
+                                            <a href="/Myadmin/Users">返回用户信息</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

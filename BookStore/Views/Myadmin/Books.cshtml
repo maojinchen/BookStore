@@ -1,0 +1,385 @@
+﻿
+@{
+    ViewBag.Title = "书籍信息管理";
+    Layout = "~/Views/Shared/_main.cshtml";
+}
+
+
+<div class="container-xl">
+    <div class="page-header d-print-none">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    书籍信息管理
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+@model IEnumerable<BookStore.Models.Books>
+@using BookStore.Models
+@{
+    List<Categories> Categories = ViewBag.category;
+}
+<div class="container-xl">
+    <div class="row row-cards">
+        <div class="card">
+            <div class="card-header">
+                <h3>
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">
+                            员工信息表
+                        </font>
+                    </font>
+                </h3>
+            </div>
+            <div class="card-body border-bottom py-3">
+                <div class="d-flex">
+                    <div class="text-muted">
+                        <font style="vertical-align: inherit;">
+                            @Model.Count()
+                            &nbsp;行数据
+                        </font>
+                    </div>
+                    <div class="ms-auto text-muted">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">
+                                搜索
+                            </font>
+                        </font>
+                        <div class="ms-2 d-inline-block">
+                            <form method="get">
+                                <input type="text" placeholder="" name="search" class="form-control form-control-sm" />
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div id="table-default">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><button class="table-sort" data-sort="sort-quantity"><font style="vertical-align: inherit;">编号</font></button></th>
+                                <th><font style="vertical-align: inherit;">书籍</font></th>
+                                <th><button class="table-sort" data-sort="sort-type"><font style="vertical-align: inherit;">作者信息</font></button></th>
+                                <th><button class="table-sort" data-sort="sort-city"><font style="vertical-align: inherit;">出版社</font></button></th>
+                                <th><button class="table-sort" data-sort="sort-date"><font style="vertical-align: inherit;">出版时间</font></button></th>
+                                <th><font style="vertical-align: inherit;">ISBN</font></th>
+                                <th><button class="table-sort" data-sort="sort-score"><font style="vertical-align: inherit;">价格</font></button></th>
+                                <th><font style="vertical-align: inherit;">类型</font></th>
+                                <th><button class="table-sort" data-sort="sort-name"><font style="vertical-align: inherit;">点击数</font></button></th>
+                                <th><font style="vertical-align: inherit;">图片</font></th>
+                                <th><font style="vertical-align: inherit;">操作</font></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-tbody">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="sort-quantity">@item.Id</td>
+                                    <td><span>《</span>@item.Title<span>》</span></td>
+                                    <td class="sort-type">@item.Author</td>
+                                    <td class="sort-type">@item.Publishers.Name</td>
+                                    <td class="sort-city" style="width:120px">@item.PublishDate.ToString("yyyy年MM月dd日")</td>
+                                    <td>@item.ISBN</td>
+                                    <td class="sort-score">￥@String.Format("{0:F}", item.UnitPrice)</td>
+                                    <td style="width:120px">
+                                        @foreach (var items in Categories)
+                                        {
+                                            if (items.Id == item.CategoryId)
+                                            {
+                                                <span>@items.Name</span>
+                                            }
+                                        }
+                                    </td>
+                                    <td class="sort-name">@item.Clicks</td>
+                                    <td class="sort-name">
+                                        <img src="~/Image/Myadmin/Books/@item.Image" alt="@item.Title" style="width:140px; height:150px" />
+                                    </td>
+                                    <td>
+                                        <a href="#">content</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer d-flex align-items-center">
+                <form method="get">
+                    <div class="m-0 text-muted">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p>
+                                    共 @ViewBag.totalPages 页，第
+                                    @ViewBag.pageIndex 页
+                                </p>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-4"><span>跳转至</span></div>
+                                    <div class="col-lg-6">
+                                        <input type="text" placeholder="页码" name="pageIndex" class="form-control form-control-sm" />
+                                    </div>
+                                    <div class="col-lg-2">页</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                @if (ViewBag.search != "")
+                {
+                    <ul class="pagination m-0 ms-auto">
+                        <li><a href="/Myadmin/Books&search=@ViewBag.search" class="page-link" aria-disabled="true">首页</a></li>
+                        @if (ViewBag.pageIndex > 1)
+                        {
+                            int index = ViewBag.pageIndex - 1;
+                            <li class="page-item">
+                                <a href="/Myadmin/Books?pageIndex=@index&search=@ViewBag.search" class="page-link" tabindex="-1" aria-disabled="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <polyline points="11 7 6 12 11 17"></polyline>
+                                        <polyline points="17 7 12 12 17 17"></polyline>
+                                    </svg>
+                                    上一页
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            int index = ViewBag.pageIndex + 1;
+                            <li class="page-item disabled">
+                                <a class="page-link" href="/Myadmin/Books?pageIndex=@index&search=@ViewBag.search">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <polyline points="11 7 6 12 11 17"></polyline>
+                                        <polyline points="17 7 12 12 17 17"></polyline>
+                                    </svg>
+                                    上一页
+                                </a>
+                            </li>
+                        }
+                        @for (int i = 1; i <= ViewBag.totalPages; i++)
+                        {
+                            if (ViewBag.pageIndex == 1)
+                            {
+                                if (i > 3)
+                                {
+                                    break;
+                                }
+                                if (i == ViewBag.pageIndex)
+                                {
+
+                                    <li class="page-item active">
+                                        <span class="page-link">@ViewBag.pageIndex</span>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="/Myadmin/Books?pageIndex=@i&search=@ViewBag.search">@i</a>
+                                    </li>
+                                }
+                            }
+                            else if (ViewBag.pageIndex == ViewBag.totalPages)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="/Myadmin/Books?pageIndex=@(ViewBag.pageIndex-2)&search=@ViewBag.search">@(ViewBag.pageIndex - 2)</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="/Myadmin/Books?pageIndex=@(ViewBag.pageIndex-1)&search=@ViewBag.search">@(ViewBag.pageIndex - 1)</a>
+                                </li>
+                                <li class="page-item active">
+                                    <span class="page-link">@ViewBag.pageIndex</span>
+                                </li>
+
+                                break;
+
+
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="/Myadmin/Books?pageIndex=@(ViewBag.pageIndex-1)&search=@ViewBag.search">@(ViewBag.pageIndex - 1)</a>
+                                </li>
+                                <li class="page-item active">
+                                    <span class="page-link">@ViewBag.pageIndex</span>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="/Myadmin/Books?pageIndex=@(ViewBag.pageIndex+1)&search=@ViewBag.search">@(ViewBag.pageIndex + 1)</a>
+                                </li>
+
+                                break;
+
+                            }
+
+
+                        }
+                        @if (@ViewBag.pageIndex < @ViewBag.totalPages)
+                        {
+                            <li class="page-item ">
+                                @{
+                                    int index = ViewBag.pageIndex + 1;
+                                }
+                                <a href="/Myadmin/Books?pageIndex=@index&search=@ViewBag.search" class="page-link">
+                                    下一页
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon"
+                                         height="24" width="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                         fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M0 0h24v24H0z" stroke="none" fill="none"></path>
+                                        <polyline points="7 7 12 12 7 17"></polyline>
+                                        <polyline points="13 7 18 12 13 17"></polyline>
+                                    </svg>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            int index = ViewBag.pageIndex + 1;
+                            <li class="page-item disabled">
+                                <a href="/Myadmin/Books?pageIndex=@index&search=@ViewBag.search" class="page-link">
+                                    下一页
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon"
+                                         height="24" width="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                         fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M0 0h24v24H0z" stroke="none" fill="none"></path>
+                                        <polyline points="9 6 15 12 9 18"></polyline>
+                                    </svg>
+                                </a>
+                            </li>
+                        }
+                        <li><a href="/Myadmin/Books?pageIndex=@ViewBag.totalPages&search=@ViewBag.search" class="page-link" aria-disabled="true">末尾</a></li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="pagination m-0 ms-auto">
+                        <li><a href="/Myadmin/Books" class="page-link" aria-disabled="true">首页</a></li>
+                        @if (ViewBag.pageIndex > 1)
+                        {
+                            int index = ViewBag.pageIndex - 1;
+                            <li class="page-item">
+                                <a href="/Myadmin/Books?pageIndex=@index" class="page-link" tabindex="-1" aria-disabled="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <polyline points="11 7 6 12 11 17"></polyline>
+                                        <polyline points="17 7 12 12 17 17"></polyline>
+                                    </svg>
+                                    上一页
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            int index = ViewBag.pageIndex + 1;
+                            <li class="page-item disabled">
+                                <a class="page-link" href="/Myadmin/Books?pageIndex=@index">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <polyline points="11 7 6 12 11 17"></polyline>
+                                        <polyline points="17 7 12 12 17 17"></polyline>
+                                    </svg>
+                                    上一页
+                                </a>
+                            </li>
+                        }
+                        @for (int i = 1; i <= ViewBag.totalPages; i++)
+                        {
+                            if (ViewBag.pageIndex == 1)
+                            {
+                                if (i > 3)
+                                {
+                                    break;
+                                }
+                                if (i == ViewBag.pageIndex)
+                                {
+
+                                    <li class="page-item active">
+                                        <span class="page-link">@ViewBag.pageIndex</span>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="/Myadmin/Books?pageIndex=@i">@i</a>
+                                    </li>
+                                }
+                            }
+                            else if (ViewBag.pageIndex == ViewBag.totalPages)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="/Myadmin/Books?pageIndex=@(ViewBag.pageIndex-2)">@(ViewBag.pageIndex - 2)</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="/Myadmin/Books?pageIndex=@(ViewBag.pageIndex-1)">@(ViewBag.pageIndex - 1)</a>
+                                </li>
+                                <li class="page-item active">
+                                    <span class="page-link">@ViewBag.pageIndex</span>
+                                </li>
+                                break;
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="/Myadmin/Books?pageIndex=@(ViewBag.pageIndex-1)">@(ViewBag.pageIndex - 1)</a>
+                                </li>
+                                <li class="page-item active">
+                                    <span class="page-link">@ViewBag.pageIndex</span>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="/Myadmin/Books?pageIndex=@(ViewBag.pageIndex+1)">@(ViewBag.pageIndex + 1)</a>
+                                </li>
+
+                                break;
+
+                            }
+                        }
+                        @if (@ViewBag.pageIndex < @ViewBag.totalPages)
+                        {
+                            <li class="page-item ">
+                                @{
+                                    int index = ViewBag.pageIndex + 1;
+                                }
+                                <a href="/Myadmin/Books?pageIndex=@index" class="page-link">
+                                    下一页
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon"
+                                         height="24" width="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                         fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M0 0h24v24H0z" stroke="none" fill="none"></path>
+                                        <polyline points="7 7 12 12 7 17"></polyline>
+                                        <polyline points="13 7 18 12 13 17"></polyline>
+                                    </svg>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            int index = ViewBag.pageIndex + 1;
+                            <li class="page-item disabled">
+                                <a href="/Myadmin/Books?pageIndex=@index" class="page-link">
+                                    下一页
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon"
+                                         height="24" width="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                         fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M0 0h24v24H0z" stroke="none" fill="none"></path>
+                                        <polyline points="9 6 15 12 9 18"></polyline>
+                                    </svg>
+                                </a>
+                            </li>
+                        }
+                        <li><a href="/Myadmin/Books?pageIndex=@ViewBag.totalPages" class="page-link" aria-disabled="true">末尾</a></li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>
